@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from collections import Counter
 import re
 
-# Function to scrape a random Wikipedia article
+# Function to get wiki status code and convert to text
 def get_wiki_data():
     url = "https://www.geeksforgeeks.org/python-programming-language"
     url_data = requests.get(url)
@@ -12,7 +12,7 @@ def get_wiki_data():
     else:
         return None
 
-# Function to extract text content from HTML
+# Function to get text content from HTML
 def get_text_from_html(html):
     text_data = BeautifulSoup(html, 'html.parser')
     paragraphs = text_data.find_all('p')
@@ -20,10 +20,10 @@ def get_text_from_html(html):
     print('text output:',text_output)
     return text_output
 
-# Function to clean and process text
+# Function to remove non-alphanumeric characters and Remove non-alphanumeric characters
 def text_modification(text):
-    text = re.sub(r'\W+', ' ', text)  # Remove non-alphanumeric characters
-    text = text.lower()  # Convert text to lowercase
+    text = re.sub(r'\W+', ' ', text)
+    text = text.lower()
     return text
 
 # Function to calculate top 5 most frequent words
@@ -38,7 +38,7 @@ def write_to_text_file(text):
     with open('wikipedia_article.txt', 'w', encoding='utf-8') as file:
         file.write(text)
 
-# Scrape a random Wikipedia article
+# Scrape a random Wikipedia
 html_content = get_wiki_data()
 if html_content:
     # Extract text content
